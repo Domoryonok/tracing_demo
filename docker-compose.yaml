@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  suggestions-microservice:
+    build: apps/suggestions/.
+    env_file:
+      - apps/suggestions/.env.docker
+    ports:
+      - "8002:8002"
+    depends_on:
+      - jaeger
+    networks:
+      - microservices
+
+  articles-microservice:
+    build: apps/articles/.
+    env_file:
+      - apps/articles/.env.docker
+    ports:
+      - "8001:8001"
+    depends_on:
+      - suggestions-microservice
+      - jaeger
+    networks:
+      - microservices
+
+  jaeger:
+    image: jaegertracing/opentelemetry-all-in-one:latest
+    ports:
+      - "16686:16686" # api
+      - "4317:4317" # grpc
+    networks:
+      - microservices
+
+networks:
+  microservices: {}

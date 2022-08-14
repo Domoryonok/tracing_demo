@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+number_of_articles=$1
+number_of_suggestions_per_article=$2
+
+python scripts/generate_mocks.py generate -na $number_of_articles -ns $number_of_suggestions_per_article
+ 
+
+echo "Success! You can find mocks at 'apps/{articles/suggestions}/mocks/' folders"
