@@ -64,6 +64,36 @@ curl http://localhost:8001/articles/v1/?with_suggested=1
 
 open [JaegerUI](http://0.0.0.0:16686/search) to see tracing data
 
+## How to run it with different from Jaeger tracing backend
+
+For this purpose we will use Tempo - open source distributed tracing backend from Grafana Labs, [here](./grafana/) you can find preconfigured Grafana stack (Tempo, Prometheus, Grafana)
+
+There are just a few commands you have to run to make it work 
+
+1. [here](./apps/articles/.env.docker) and [here](./apps/suggestions/.env.docker) replace `TRACING_EXPORTER_URL=jaeger:4319` with `TRACING_EXPORTER_URL=tempo:4317`
+
+2. run the main docker-compose file
+
+```bash
+docker compose build && docker compose up
+```
+
+3. run Grafana stack docker compose
+
+```bash
+docker compose -f grafana/docker-compose.yaml up
+```
+
+4. make a request
+
+```bash
+curl http://localhost:8001/articles/v1/?with_suggested=1
+```
+
+5. enjoy your traces in [Grafana](http://localhost:3000/explore?orgId=1&left=%7B%22datasource%22:%22tempo%22,%22queries%22:%5B%7B%22refId%22:%22A%22,%22queryType%22:%22nativeSearch%22%7D%5D,%22range%22:%7B%22from%22:%22now-1h%22,%22to%22:%22now%22%7D%7D)
+
+This shows how easily you can replace the tracing backend by instrumenting your code with opentelemetry.
+
 ## How data flows in the system
 
 When you make a request to `articles microservice` without `with_suggested` query parameter, `articles microservice` retrieves requested data from the memory (data was loaded on the startup from the `mocks/articles.json`), and gives it to you, when you add `with_suggested` parameter, for every article in the list `articles microservice` query `suggestions microservice`, which retrieves a list of suggested articles from its memory (data was loaded on the startup from the `mocks/suggestions.json`), then `articles microservice` enrich these id's with articles data and reply with this data combination to the user

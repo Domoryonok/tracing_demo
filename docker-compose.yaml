@@ -9,8 +9,6 @@ services:
       - "8002:8002"
     depends_on:
       - jaeger
-    networks:
-      - microservices
 
   articles-microservice:
     build: apps/articles/.
@@ -21,16 +19,15 @@ services:
     depends_on:
       - suggestions-microservice
       - jaeger
-    networks:
-      - microservices
 
   jaeger:
     image: jaegertracing/opentelemetry-all-in-one:latest
     ports:
       - "16686:16686" # api
-      - "4317:4317" # grpc
-    networks:
-      - microservices
+      - "4319:4317" # grpc
 
 networks:
-  microservices: {}
+  default:
+    name: microservices
+    driver: bridge
+
