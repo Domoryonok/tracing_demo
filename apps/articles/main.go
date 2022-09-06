@@ -30,7 +30,7 @@ func main() {
 
 	// init tracer
 	tracingProvider, err := tracing.NewProvider(
-		context.Background(), serviceName, os.Getenv("TRACING_EXPORTER_URL"))
+		context.Background(), serviceName, os.Getenv("TRACING_BACKEND_URL"))
 	if err != nil {
 		_ = logger.Log("err", err)
 		os.Exit(1)

@@ -70,7 +70,7 @@ For this purpose we will use Tempo - open source distributed tracing backend fro
 
 There are just a few commands you have to run to make it work 
 
-1. [here](./apps/articles/.env.docker) and [here](./apps/suggestions/.env.docker) replace `TRACING_EXPORTER_URL=jaeger:4319` with `TRACING_EXPORTER_URL=tempo:4317`
+1. [here](./apps/articles/.env.docker) and [here](./apps/suggestions/.env.docker) replace `TRACING_BACKEND_URL=jaeger:4317` with `TRACING_BACKEND_URL=tempo:4317`
 
 2. run the main docker-compose file
 

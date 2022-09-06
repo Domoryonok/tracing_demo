@@ -18,7 +18,7 @@ def create_app() -> Flask:
     container.suggestions_service.init()
 
     # init tracer
-    provider = OTLPProvider("suggestions-service", os.getenv("TRACING_EXPORTER_URL"))
+    provider = OTLPProvider("suggestions-service", os.getenv("TRACING_BACKEND_URL"))
     trace.set_tracer_provider(provider.provider)
 
     # setup handlers

@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  jaeger:
+    image: jaegertracing/opentelemetry-all-in-one:latest
+    ports:
+      - "16686:16686" # api
+      - "4317:4317" # grpc
+
+networks:
+  default:
+    name: microservices
+    external: true
+
+

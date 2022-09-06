@@ -7,8 +7,6 @@ services:
       - apps/suggestions/.env.docker
     ports:
       - "8002:8002"
-    depends_on:
-      - jaeger
 
   articles-microservice:
     build: apps/articles/.
@@ -18,13 +16,6 @@ services:
       - "8001:8001"
     depends_on:
       - suggestions-microservice
-      - jaeger
-
-  jaeger:
-    image: jaegertracing/opentelemetry-all-in-one:latest
-    ports:
-      - "16686:16686" # api
-      - "4319:4317" # grpc
 
 networks:
   default:

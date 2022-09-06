@@ -26,7 +26,7 @@ func NewProvider(ctx context.Context, serviceName, exporterURL string) (*Provide
 	// setup exporter
 	e, err := otlptrace.New(ctx, otlptracegrpc.NewClient(
 		otlptracegrpc.WithEndpoint(exporterURL),
-		otlptracegrpc.WithInsecure(), // as connection is need to be secured in this project
+		otlptracegrpc.WithInsecure(), // as connection is not need to be secured in this project
 	))
 	if err != nil {
 		return nil, err
