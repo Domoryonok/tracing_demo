@@ -7,8 +7,8 @@ services:
     volumes:
       - ./tempo.yaml:/etc/tempo.yaml
     ports:
-      - "3200:3200"   # tempo
-      - "4317:4317"  # otlp grpc
+      - "3200:3200"   # UI
+      - "4319:4317"  # otlp grpc
 
   prometheus:
     image: prom/prometheus:latest
