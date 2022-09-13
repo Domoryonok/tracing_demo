@@ -52,8 +52,16 @@ scripts/generate_mocks ${number_of_articles} ${number_of_suggestions_per_article
 
 ## How to run the system
 
+1. run the main docker-compose file with microservices
+
 ```bash
-docker compose build && docker compose up
+docker compose up
+```
+
+2. run Jaeger docker-compose
+
+```bash
+docker compose  -f jaeger/docker-compose.yaml up
 ```
 
 now you can interact with the system, you can try to make a request, get a response and trace samples
@@ -75,7 +83,7 @@ There are just a few commands you have to run to make it work
 2. run the main docker-compose file
 
 ```bash
-docker compose build && docker compose up
+docker compose up
 ```
 
 3. run Grafana stack docker compose
