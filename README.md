@@ -61,7 +61,7 @@ docker compose up
 2. run Jaeger docker-compose
 
 ```bash
-docker compose  -f jaeger/docker-compose.yaml up
+docker compose -f jaeger/docker-compose.yaml up
 ```
 
 now you can interact with the system, you can try to make a request, get a response and trace samples
