@@ -1,6 +1,6 @@
 # About
 
-This repository contains source code with examples for this article about Distributed tracing.
+This repository contains source code with examples for [this](https://medium.com/adevinta-tech-blog/distributed-tracing-with-opentelemetry-in-your-go-python-microservices-1782cd0a1e77) article about Distributed tracing.
 The article breaks down concepts of distributed tracings and shows how to instrument your python/golang microservices.
 
 ## Example microservice architecture
